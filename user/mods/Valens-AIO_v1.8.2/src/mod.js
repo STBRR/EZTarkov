@@ -1,0 +1,80 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const ConfigTypes_1 = require("C:/snapshot/project/obj/models/enums/ConfigTypes");
+const airdrop_1 = require("./airdrop");
+const ammo_1 = require("./ammo");
+const armor_1 = require("./armor");
+const bots_1 = require("./bots");
+const containers_1 = require("./containers");
+const flea_1 = require("./flea");
+const globals_1 = require("./globals");
+const hideout_1 = require("./hideout");
+const insurance_1 = require("./insurance");
+const items_1 = require("./items");
+const locations_1 = require("./locations");
+const logger_1 = require("./logger");
+const loot_1 = require("./loot");
+const prewipe_1 = require("./prewipe");
+const quests_1 = require("./quests");
+const raid_1 = require("./raid");
+const skills_1 = require("./skills");
+const traders_1 = require("./traders");
+const weapons_1 = require("./weapons");
+class ValensAIO {
+    constructor() {
+        this.modConfig = require("../config/config.json");
+    }
+    postDBLoad(container) {
+        // get database from server
+        const logger = container.resolve("WinstonLogger");
+        const vLogger = new logger_1.Logger(logger);
+        this.databaseServer = container.resolve("DatabaseServer");
+        this.configServer = container.resolve("ConfigServer");
+        this.weightedRandomHelper = container.resolve("WeightedRandomHelper");
+        this.locationConfig = this.configServer.getConfig(ConfigTypes_1.ConfigTypes.LOCATION);
+        this.ragfairConfig = this.configServer.getConfig(ConfigTypes_1.ConfigTypes.RAGFAIR);
+        this.botConfig = this.configServer.getConfig(ConfigTypes_1.ConfigTypes.BOT);
+        this.inRaidConfig = this.configServer.getConfig(ConfigTypes_1.ConfigTypes.IN_RAID);
+        this.insuranceConfig = this.configServer.getConfig(ConfigTypes_1.ConfigTypes.INSURANCE);
+        this.hideoutConfig = this.configServer.getConfig(ConfigTypes_1.ConfigTypes.HIDEOUT);
+        this.traderConfig = this.configServer.getConfig(ConfigTypes_1.ConfigTypes.TRADER);
+        this.airdropConfig = this.configServer.getConfig(ConfigTypes_1.ConfigTypes.AIRDROP);
+        const airdrops = new airdrop_1.Airdrop(vLogger, this.databaseServer, this.airdropConfig);
+        airdrops.updateAirdrops();
+        const ammo = new ammo_1.Ammo(vLogger, this.databaseServer);
+        ammo.updateAmmo();
+        const armor = new armor_1.Armor(vLogger, this.databaseServer);
+        armor.updateArmor();
+        const bots = new bots_1.Bots(vLogger, this.databaseServer, this.botConfig, this.weightedRandomHelper);
+        bots.updateBots();
+        const containers = new containers_1.Containers(vLogger, this.databaseServer);
+        containers.updateContainers();
+        const flea = new flea_1.Flea(vLogger, this.ragfairConfig, this.databaseServer);
+        flea.updateFlea();
+        const globals = new globals_1.Globals(vLogger, this.databaseServer);
+        globals.updateGlobals();
+        const hideout = new hideout_1.Hideout(vLogger, this.databaseServer, this.hideoutConfig);
+        hideout.updateHideout();
+        const insurance = new insurance_1.Insurance(vLogger, this.insuranceConfig, this.databaseServer);
+        insurance.updateInsurance();
+        const items = new items_1.Items(vLogger, this.databaseServer);
+        items.updateItems();
+        const locations = new locations_1.Locations(vLogger, this.databaseServer);
+        locations.updateLocations();
+        const loot = new loot_1.Loot(vLogger, this.databaseServer, this.locationConfig);
+        loot.updateLoot();
+        const prewipe = new prewipe_1.Prewipe(vLogger, this.databaseServer);
+        prewipe.updatePrewipe();
+        const quests = new quests_1.Quests(vLogger, this.databaseServer);
+        quests.updateQuests();
+        const raid = new raid_1.Raid(vLogger, this.databaseServer, this.inRaidConfig);
+        raid.updateRaid();
+        const skills = new skills_1.Skills(vLogger, this.databaseServer);
+        skills.updateSkills();
+        const traders = new traders_1.Traders(vLogger, this.databaseServer, this.traderConfig);
+        traders.updateTraders();
+        const weapons = new weapons_1.Weapons(vLogger, this.databaseServer);
+        weapons.updateWeapons();
+    }
+}
+module.exports = { mod: new ValensAIO() };

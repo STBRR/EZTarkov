@@ -1,0 +1,30 @@
+Oct 25, Ver 3.2.5
+>updated to work on 3.2.5
+>mod is in a 'maintainance phase' until I get a real zust for tarky again.
+>will continue to update as new versions release, no new content for a while though,.
+
+Sep 13, Ver 3.2.3
+>updated to work for 3.2.3
+
+Aug 30, Ver 3.2.2
+>updated to work for 3.2.2
+
+Aug 18, ver 3.2.1
+>updated to work for 3.2.1
+
+Aug 8, ver 3.2.0
+>updated to work for 3.2.0
+>G36 buff
+>some stocks changes
+>slight changes to SAG AK-545, RD-704.
+>Added Compatability settings - if you change "compatability" in config.json to "true", .308 muzzle devices get 
+
+AUG 3, ver 3.1.1
+>MCX Stock Rebalance
+>new parts (12.12+) adjusted
+>AK-100 Series Buffed
+>AK 7.62 Silencers Buffed
+>Minor Ammo Changes
+
+Jul 31, ver 3.1.0
+>updated to work in aki 3.1.1

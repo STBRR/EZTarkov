@@ -1,0 +1,22 @@
+{
+    "damagePerMeter": 9,
+    "safeHeight": 3,
+    "maxLoyaltyTraders": false,
+    "timeBeforeDeployLocal": 10,
+
+    "matchEnd":
+    {
+        "survivedExpRequirement": 200,
+        "survivedSecondsRequirement": 420,
+        "survivedExpReward": 900,
+        "miaExpReward": 600,
+        "runnerExpReward": 600,
+        "leftMult": 0,
+        "miaMult": 1,
+        "survivedMult": 5,
+        "runnerMult": 1.5,
+        "killedMult": 3,			
+        "headShotMult": 3.6,
+        "expOnDamageAllHealth": 100
+    }
+}
